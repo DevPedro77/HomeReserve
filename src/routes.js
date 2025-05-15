@@ -8,14 +8,23 @@ const routes = new Router();
 const upload = multer(uploadConfig);
 
 
-// rota teste
-routes.get("/", (req, res) => {
-  return res.json({ message: "Hello World" });
-});
+
 // Rota para cadastrar usuario
 routes.post("/login", SessionController.cadastrandoUser); 
 
 // Cadastrar casa
-routes.post("/house", upload.single("thumbanail"),HouseController.cadastrandoCasa);
+routes.post("/house", upload.single("thumbnail"),HouseController.cadastrandoCasa);
+
+// Listar casas por disponibilidade
+routes.get("/house", HouseController.listandoCasas);
+
+// Editar casa
+routes.put("/house/:house_id", upload.single("thumbnail"),HouseController.editandoCasa);
+
+// Deletar casa
+routes.delete("/house", HouseController.deletandoCasa);
+
+
+
 
 export default routes;

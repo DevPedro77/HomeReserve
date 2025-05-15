@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 const HouseSchema = new mongoose.Schema({
-  thumbanail: String,
+  thumbnail: String,
   description: String,
   price: Number,
   location: String,
@@ -17,7 +17,7 @@ const HouseSchema = new mongoose.Schema({
   });
 
   HouseSchema.virtual("thumbnail_url").get(function () {
-    return `http://localhost:5555/files/${this.thumbanail}`;
+    return `http://localhost:5555/files/${this.thumbnail}`;
   }); //passando prop url para  o front-end
 
 
