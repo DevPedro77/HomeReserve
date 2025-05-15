@@ -10,7 +10,15 @@ const HouseSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   }
-  })
+  },{
+    toJSON: {
+      virtuals: true,
+    }, //colocar a variavel virtual no json
+  });
+
+  HouseSchema.virtual("thumbnail_url").get(function () {
+    return `http://localhost:5555/files/${this.thumbanail}`;
+  }); //passando prop url para  o front-end
 
 
 // Usuario vai acessar apenas com email
