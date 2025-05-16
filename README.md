@@ -1,17 +1,3 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <title>HomeReserve - API RESTful</title>
-  <style>
-    body { font-family: Arial, sans-serif; line-height: 1.6; margin: 40px; max-width: 900px; }
-    h1, h2, h3 { color: #333366; }
-    code { background: #f4f4f4; padding: 2px 4px; border-radius: 4px; }
-    pre { background: #f4f4f4; padding: 12px; border-radius: 4px; overflow: auto; }
-    a { color: #3366cc; }
-  </style>
-</head>
-<body>
 
   <h1>🏠 HomeReserve – API RESTful estilo Airbnb</h1>
 
