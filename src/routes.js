@@ -36,7 +36,13 @@ routes.get("/dashboard", DashboardController.listarCasasDisponiveis);
 routes.get("/dashboard", DashboardController.listarCasasReservadas);
 
 // Reservar casa
-routes.post("/house/:house_id/reserve", ReserveController.reservandoCasa);
+routes.post("/house/:house_id/reserves", ReserveController.reservandoCasa);
+
+// Listar reservas do usuario
+routes.get("/reserves", ReserveController.listarReservas);
+
+// Deletar reserva do usuario
+routes.delete("/reserves/cancel", ReserveController.deletandoReserva);
 
 
 export default routes;

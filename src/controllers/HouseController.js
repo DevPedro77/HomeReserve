@@ -1,6 +1,8 @@
 import House from "../models/House.js";
 import User from "../models/User.js";
 
+import * as Yup from "yup"; // Importando o Yup para validação de dados
+
 
 class HouseController {
 
@@ -23,9 +25,23 @@ class HouseController {
 
   // Cadastrando uma casa
   static async cadastrandoCasa(req, res){
+
+    // Validação dos dados
+    const schema = Yup.object().shape({
+      description: Yup.string().required(),
+      price: Yup.number().required(),
+      location: Yup.string().required(),
+      status: Yup.boolean().required(),
+    })
+
     const {filename} = req.file; //pegando a foto
     const {  description, price, location, status } = req.body; //pegando os dados do body
     const {user_id} = req.headers; //pegando o id do usuario
+
+    // Validando os dados antes de cadastrar a casa
+    if(!(await schema.isValid(req.body))){
+      return res.status(401).json({error: "Erro na validação dos dados"});
+    }
 
     try {
       const house = await House.create({
@@ -52,6 +68,18 @@ class HouseController {
     const {filename} = req.file; //pegando a foto
     const {  description, price, location, status } = req.body; //pegando os dados do body
     const {user_id} = req.headers; //pegando o id do usuario
+
+    const schema = Yup.object().shape({
+      description: Yup.string().required(),
+      price: Yup.number().required(),
+      location: Yup.string().required(),
+      status: Yup.boolean().required(),
+    })
+
+    if(!(await schema.isValid(req.body))){
+      return res.status(401).json({error: "Erro na validação dos dados"});
+    }
+
 
     const user = await User.findById(user_id); //verificando se o usuario existe
     const house = await House.findById(house_id); //verificando se a casa existe
