@@ -1,7 +1,10 @@
 import {Router} from "express";
+
 import SessionController from "./controllers/SessionController.js";
 import HouseController from "./controllers/HouseController.js";
 import DashboardController from "./controllers/DashboardController.js";
+import ReserveController from "./controllers/ReserveController.js";
+
 import multer from "multer";
 import uploadConfig from "./config/uploads.js";
 
@@ -31,6 +34,9 @@ routes.get("/dashboard", DashboardController.listarCasasDisponiveis);
 
 // Listar casas no dashboard reservadas por usuario
 routes.get("/dashboard", DashboardController.listarCasasReservadas);
+
+// Reservar casa
+routes.post("/house/:house_id/reserve", ReserveController.reservandoCasa);
 
 
 export default routes;
